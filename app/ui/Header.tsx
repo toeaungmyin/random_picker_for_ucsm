@@ -1,24 +1,37 @@
+'use client'
+import { links } from '@/app/lib/utils'
+import clsx from 'clsx'
 import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 
+const active = " text-white bg-gray-900"
+const inActive = " text-gray-300 hover:bg-gray-700 hover:text-white"
+
 function Header() {
+    const pathname = usePathname();
+    
     return (
         <nav className="bg-gray-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
-                    <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                        <div className="flex flex-shrink-0 items-center gap-2">
-                            <Image width={100} height={100} className="h-8 w-auto" src="/logo.png" alt="Your Company" />
-                            <div className="text-xl font-bold">Random Picker</div>
+                    <div className="flex items-center justify-center sm:items-stretch sm:justify-start gap-4">
+                        <Link href={'/'} className="flex items-center gap-2">
+                            <Image width={100} height={100} className="h-10 w-auto" src="/logo.png" alt="Your Company" />
+                            <div className="text-xl font-bold">R-Tools</div>
+                        </Link>
+                        <div className="hidden sm:flex">
+                            {links.map((link) => 
+                            (
+                                <Link key={link.name} href={link.href} className={clsx(
+                                    'rounded-sm px-3 py-3 text-sm font-medium', pathname === link.href ? active : inActive
+                                )}>
+                                    Random Picker
+                                </Link>
+                                )
+                            )}
                         </div>
-                        {/* <div className="hidden sm:ml-6 sm:block">
-                            <div className="flex space-x-4">
-                                <a href="#" className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</a>
-                                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
-                                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
-                                <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
-                            </div>
-                        </div> */}
                     </div>
                     {/* <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                         <button type="button" className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -45,11 +58,10 @@ function Header() {
             
             {/* <div className="sm:hidden" id="mobile-menu">
                 <div className="space-y-1 px-2 pb-3 pt-2">
-                    
-                    <a href="#" className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
-                    <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
-                    <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
-                    <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+                    <Link href="#" className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</Link>
+                    <Link href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Random Picker</Link>
+                    <Link href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</Link>
+                    <Link href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</Link>
                 </div>
             </div> */}
         </nav>
