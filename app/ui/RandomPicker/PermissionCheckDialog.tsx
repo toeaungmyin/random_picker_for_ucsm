@@ -37,7 +37,7 @@ export function PermissionCheckDialog({ finalPick }: { finalPick: Item }) {
     <Dialog>
       <DialogTrigger asChild>
         <Button className='flex gap-2 text-white px-10 py-6 text-lg font-bold bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-300'>
-            Done
+            Submit
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
