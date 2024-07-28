@@ -19,14 +19,13 @@ const key = "i don't know"
 export function PermissionCheckDialog({ finalPick }: { finalPick: Item }) {
   const router = useRouter();
 
-  const [pass, setPass] = useState<string>(key)
+  const [pass, setPass] = useState<string>(`${key}`)
   
   const pickItemWithId = async () => {
-        const allow = pass === key
+        const allow = pass === `${key}`
         if (finalPick && allow) {
             try {
-                const response = await axios.post('/api/pick-item', { id: finalPick.id });
-                console.log('Item picked:', response.data);
+                await axios.post('/api/pick-item', { id: finalPick.id });
                 router.push('random-picker/picked-items');
             } catch (error) {
                 console.error('Error picking item:', error);

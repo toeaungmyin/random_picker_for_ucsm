@@ -13,4 +13,5 @@ model Item {
   mkpt String  @unique
   name String
   picked_at DateTime?
+  possibility Int @default(50)
 }
